@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
 		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>debug.2</VersionSuffix>
+		<VersionSuffix Condition="'$(Configuration)' == 'Debug'" >debug.2</VersionSuffix>
 		<LangVersion>default</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -17,6 +17,25 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<PackageId>SourceGenerator.Helper.CopyCode</PackageId>
+		<Authors>Patrick Kranz</Authors>
+		<PackageProjectUrl>https://github.com/LokiMidgard/SourceGenerator.Helper.CopyCode</PackageProjectUrl>
+		<PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+
+		<RepositoryUrl>https://github.com/LokiMidgard/SourceGenerator.Helper.CopyCode.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>sourcegenerator</PackageTags>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<Description>
+			This Generator is intendede to generate text that a source generator can use to emit source to its generation. (See ReadMe)
+		</Description>
+
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../../readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.6.0" PrivateAssets="all" />
