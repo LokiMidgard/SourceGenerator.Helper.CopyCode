@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/SourceGenerator.Helper.CopyCode.svg?style=flat-square)](https://www.nuget.org/packages/SourceGenerator.Helper.CopyCode/)
+[![GitHub license](https://img.shields.io/github/license/LokiMidgard/SourceGenerator.Helper.CopyCode.svg?style=flat-square)](https://tldrlegal.com/license/mit-license#summary)
+
 # SourceGenerator.Helper.CopyCode
 
 This Generator is intendede to generate text that a source generator can use to emit source to its generation.
