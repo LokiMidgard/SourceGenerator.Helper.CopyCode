@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net472</TargetFrameworks>
+		<LangVersion>default</LangVersion>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>11</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<NoWarn>$(NoWarn);CA1707</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest" Version="1.1.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.6.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SourceGenerator.Helper.CopyCode\SourceGenerator.Helper.CopyCode.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="App.config" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+
+</Project>

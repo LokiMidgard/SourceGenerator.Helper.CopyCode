@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SourceGenerator.Helper.CopyCode": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SourceGenerator.Helper.CopyCode.Example\\SourceGenerator.Helper.CopyCode.Example.csproj"
+    }
+  }
+}
