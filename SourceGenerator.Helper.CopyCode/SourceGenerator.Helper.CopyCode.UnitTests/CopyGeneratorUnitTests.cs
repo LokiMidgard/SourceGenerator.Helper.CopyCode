@@ -213,7 +213,7 @@ namespace Nested{
     [System.Obsolete]
     [System.ComponentModel.Browsable(false)]
     [SourceGenerator.Helper.CopyCode.Copy]
-    [System.Serializable]
+    [Serializable]
     internal static partial class GlobalNamespaceGreeter
     {
 	    public static string GetHelloWorld() => ""Foo"";
@@ -229,7 +229,7 @@ internal  static partial class Copy {
         #nullable enable
         
         namespace Nested;
-        [System.Serializable]
+        [global::System.SerializableAttribute]
         internal static partial class GlobalNamespaceGreeter
         {
             public static string GetHelloWorld() => ""Foo"";

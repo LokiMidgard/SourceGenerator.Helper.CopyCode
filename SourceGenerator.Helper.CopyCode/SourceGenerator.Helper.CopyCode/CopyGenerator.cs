@@ -102,14 +102,32 @@ internal sealed partial class CopyGenerator : IIncrementalGenerator {
         // We want to copy only the Attributes below the copy Attribute
         var attributesToSkip = syntaxNode.AttributeLists.TakeWhile(list => !list.Attributes.Any(x => x == (SyntaxNode?)context.Attributes.First().ApplicationSyntaxReference!.GetSyntax())).Count() + 1;
         var newAttributiList = syntaxNode.AttributeLists;
+
+        // Full qualify the name
+        newAttributiList = new SyntaxList<AttributeListSyntax>(syntaxNode.AttributeLists.Select(x =>
+        x.WithAttributes(new SeparatedSyntaxList<AttributeSyntax>().AddRange(
+            x.Attributes.Select(attributeConstructor => {
+                var sym = context.SemanticModel.GetSymbolInfo(attributeConstructor).Symbol;
+                if (sym is IMethodSymbol method && method.ContainingSymbol is INamedTypeSymbol namedSymbol) {
+                    var newfull = namedSymbol
+                        .ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+                    attributeConstructor = attributeConstructor.WithName(SyntaxFactory.ParseName(newfull));
+                }
+                return attributeConstructor;
+            })))));
+
         for (int i = 0; i < attributesToSkip; i++) {
             newAttributiList = newAttributiList.RemoveAt(0);
         }
 
         var syntaxToPrint = syntaxNode.WithAttributeLists(newAttributiList);
 
-        // Write single lines so identation works
-        var splitter = syntaxToPrint.NormalizeWhitespace(indentation: "    ", eol: "\n").ToString().AsSpan().Split('\n');
+  
+
+
+
+            // Write single lines so identation works
+            var splitter = syntaxToPrint.NormalizeWhitespace(indentation: "    ", eol: "\n").ToString().AsSpan().Split('\n');
         foreach (var item in splitter) {
             source.WriteLine(item.ToString());
         }
